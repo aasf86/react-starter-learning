@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "react-starter-learning",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/aasf86/react-starter-learning.git"
@@ -15,11 +12,12 @@
   "bugs": {
     "url": "https://github.com/aasf86/react-starter-learning/issues"
   },
-  "homepage": "https://github.com/aasf86/react-starter-learning#readme",  
+  "homepage": "https://github.com/aasf86/react-starter-learning#readme",
   "devDependencies": {
     "react-scripts": "0.7.0"
   },
   "dependencies": {
+    "bootstrap": "^3.3.7",
     "react": "^15.3.2",
     "react-dom": "^15.3.2"
   },
@@ -28,5 +26,5 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }  
+  }
 }
