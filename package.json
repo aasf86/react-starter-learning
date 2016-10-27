@@ -15,5 +15,18 @@
   "bugs": {
     "url": "https://github.com/aasf86/react-starter-learning/issues"
   },
-  "homepage": "https://github.com/aasf86/react-starter-learning#readme"
+  "homepage": "https://github.com/aasf86/react-starter-learning#readme",  
+  "devDependencies": {
+    "react-scripts": "0.7.0"
+  },
+  "dependencies": {
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }  
 }
