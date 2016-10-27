@@ -1,0 +1,19 @@
+{
+  "name": "react-starter-learning",
+  "version": "1.0.0",
+  "description": "react-starter-learning",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aasf86/react-starter-learning.git"
+  },
+  "author": "github@aasf86",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aasf86/react-starter-learning/issues"
+  },
+  "homepage": "https://github.com/aasf86/react-starter-learning#readme"
+}
