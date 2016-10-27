@@ -12,17 +12,21 @@ class User extends Component {
     }
 
     salvar(){
-        this.setState({ pgSalvar: 'Salvando...' });
+        this.setState({ pgSalvar: 'Salvando...',  btnSalvarEnable: true });
+        /*
         this.refs.btnSalvar.disabled = true;
         var self = this;
-        setTimeout(function() {
-            self.setState({ pgSalvar: 'Salvar' });
-            self.refs.btnSalvar.disabled = false;            
+        */
+        setTimeout(() => {
+            //self.setState({ pgSalvar: 'Salvar' });
+            this.setState({ pgSalvar: 'Salvar',  btnSalvarEnable: false });
+            //self.refs.btnSalvar.disabled = false;            
         }, 1000);
         console.log(this);
     }
 
     render(){
+        const {btnSalvarEnable, pgSalvar} = this.state;
         return(
             <div className="container">
                 <form>
@@ -58,9 +62,10 @@ class User extends Component {
                                 <button
                                     ref="btnSalvar"
                                     type="button"
+                                    disabled={btnSalvarEnable}
                                     onClick={()=>this.salvar()}
                                     className="btn btn-primary">
-                                    <i className="glyphicon glyphicon-floppy-disk"></i>  {this.state.pgSalvar}
+                                    <i className="glyphicon glyphicon-floppy-disk"></i>  {pgSalvar}
                                 </button>
                             </div>
                         </div>
