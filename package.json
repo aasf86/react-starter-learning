@@ -2,6 +2,7 @@
   "name": "react-starter-learning",
   "version": "1.0.0",
   "description": "react-starter-learning",
+  "homepage": "http://localhost:3000/and/",
   "main": "index.js",
   "repository": {
     "type": "git",
@@ -11,8 +12,7 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/aasf86/react-starter-learning/issues"
-  },
-  "homepage": "https://github.com/aasf86/react-starter-learning#readme",
+  },  
   "devDependencies": {
     "react-scripts": "0.7.0"
   },

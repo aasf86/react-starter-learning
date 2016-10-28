@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import User from './user/user.js';
+import User from './user/user';
+import UserModel from './user/user-model';
 
 class App extends Component {
   render() {
