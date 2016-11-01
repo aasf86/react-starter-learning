@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import User from './user/user';
-import UserModel from './user/user-model';
+import UserList from './user/user-list';
 
 class App extends Component {
   render() {
@@ -19,6 +19,7 @@ class App extends Component {
         </div>
         <hr/>
         <User />
+        <UserList />
       </div>
     );
   }

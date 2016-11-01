@@ -8,7 +8,8 @@ class User extends Component {
         this.state = {
             pgSalvar: 'Salvar',
             btnSalvarEnable: props.btnSalvarEnable || false,
-            model: props.model || new UserModel('', '', '')
+            model: props.model || new UserModel('', '', '') ,
+            onSalvar: this.onSalvar.bind(this)
         };
     }
 
@@ -21,7 +22,8 @@ class User extends Component {
                 btnSalvarEnable: false,
                 model: new UserModel(this.refs.nome.value, this.refs.phone.value, this.refs.email.value) 
             });            
-        }, 1000);        
+            this.onSalvar(this.state.model);
+        }, 1000);
     }
 
     render(){
@@ -33,7 +35,7 @@ class User extends Component {
 
         return(
             <div className="container">
-                <form>
+                <form className="">
                     <div className="well">
                         <div className="row">
                             <div className="form-group col-md-3">
@@ -69,13 +71,14 @@ class User extends Component {
                                     name="email" 
                                     defaultValue={model.email}/>
                             </div>                        
-                            <div className="form-group col-md-3">
+                            <div className="form-group col-md-2"> 
+                                <label className="control-label">&nbsp;</label>                               
                                 <button
                                     ref="btnSalvar"
                                     type="button"
                                     disabled={btnSalvarEnable}
                                     onClick={()=>this.salvar()}
-                                    className="btn btn-primary">
+                                    className="btn btn-primary form-control">
                                     <i className="glyphicon glyphicon-floppy-disk"></i>  {pgSalvar}
                                 </button>
                             </div>
