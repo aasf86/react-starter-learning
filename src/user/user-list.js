@@ -1,16 +1,9 @@
 import React, { Component } from 'react';
-import UserModel from './user-model';
 import UserListItem from './user-list-item';
 
 class UserList extends Component {
 
-    constructor(props) {
-        super(props);        
-    }
- 
-
     render() {
-
 
         const {users} = this.props;
 

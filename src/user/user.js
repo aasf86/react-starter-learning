@@ -6,7 +6,7 @@ class User extends Component {
     constructor(props) {
         super(props);
 
-        var model = props.model || new UserModel('asdasd', '123123123', 'asd123');
+        var model = props.model || new UserModel('', '', '');
 
         this.state = Object.assign({}, model, {
             loading: false
@@ -16,19 +16,15 @@ class User extends Component {
     salvar() {
         this.setState({ loading: true });
 
-        setTimeout(() => {
+        
             var modelLimpo = new UserModel('', '', '');
             var novoState = Object.assign({}, modelLimpo, { loading: false });
-
-
             this.props.onSalvar(new UserModel(this.state.nome, this.state.telefone, this.state.email));
-
             this.setState(novoState);
-        }, 1000);
+        
     }
 
     link(propName) {
-
         return {
             name: propName,
             className: "form-control",
@@ -37,8 +33,6 @@ class User extends Component {
             value: this.state[propName],
             onChange: (e) => this.setState({ [propName]: e.target.value })
         };
-
-
     }
 
     renderInput(name, maxLength, Tag = "input"){
@@ -48,9 +42,6 @@ class User extends Component {
     render() {
         const {
             loading,
-            nome,
-            telefone,
-            email
         } = this.state;
 
         return (
@@ -60,7 +51,7 @@ class User extends Component {
                         <div className="row">
                             <div className="form-group col-md-3">
                                 <label className="control-label">Nome</label>
-                                {this.renderInput("nome", 100, "textarea")}
+                                {this.renderInput("nome", 100)}
                             </div>
                             <div className="form-group col-md-3">
                                 <label className="control-label">Telefone</label>
@@ -78,7 +69,7 @@ class User extends Component {
                                     disabled={loading}
                                     onClick={() => this.salvar()}
                                     className="btn btn-primary form-control">
-                                    <i className="glyphicon glyphicon-floppy-disk"></i>  {loading ? "Salvando..." : "Salvar"}
+                                    <i className="glyphicon glyphicon-plus"></i>  {loading ? "Adicionando..." : "Adicionar"}
                                 </button>
                             </div>
                         </div>
