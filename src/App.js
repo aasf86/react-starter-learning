@@ -5,7 +5,25 @@ import User from './user/user';
 import UserList from './user/user-list';
 
 class App extends Component {
+
+  constructor(props){
+    super(props);
+    this.state = {
+      users: []
+    }
+  }
+
+  addUser(user){        
+    this.state.users.push(user);    
+    this.setState({
+      users: this.state.users
+    });
+  }
+
   render() {
+
+    const { users } = this.state;
+
     return (
       <div>        
         <div className="App">
@@ -18,8 +36,8 @@ class App extends Component {
           </p>
         </div>
         <hr/>
-        <User />
-        <UserList />
+        <User onSalvar={(user)=>this.addUser(user)} />
+        <UserList users={users} />
       </div>
     );
   }

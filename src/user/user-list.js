@@ -7,8 +7,18 @@ class UserList extends Component {
     constructor(props){
         super(props);
         this.state = {
-            users: props.user || [new UserModel('Anderson', '654a654asdf', '654as654dfas'), new UserModel('asdf','asdf','asdfasdfas')]         
+            users: props.users || [new UserModel('Anderson', '654a654asdf', '654as654dfas'), new UserModel('asdf','asdf','asdfasdfas')]         
         };
+    }
+
+    handleRemove(guid){
+
+        this.state.users = this.state.users.filter((item,index)=>{
+            return item.guid !== guid;
+        });
+
+        this.setState({ users: this.state.users });
+                
     }
 
     render(){        
@@ -23,10 +33,11 @@ class UserList extends Component {
                                         <th>Nome</th>
                                         <th>Telefone</th>
                                         <th>Email</th>
+                                        <th width="3%"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    { this.state.users.map((item, index) => <UserListItem user={item} key={index} />) }
+                                    { this.state.users.map((item, index) => <UserListItem user={item} key={index} onRemove={(guid)=>this.handleRemove(guid)} />) }
                                 </tbody>                                                            
                             </table>
                         </div>

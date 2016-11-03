@@ -8,21 +8,24 @@ class User extends Component {
         this.state = {
             pgSalvar: 'Salvar',
             btnSalvarEnable: props.btnSalvarEnable || false,
-            model: props.model || new UserModel('', '', '') ,
-            onSalvar: this.onSalvar.bind(this)
+            model: props.model || new UserModel('', '', ''),
+            handleSalvar: props.onSalvar
         };
     }
 
     salvar(){
         this.setState({ pgSalvar: 'Salvando...',  btnSalvarEnable: true });
-        setTimeout(() => {                        
-            console.log(this.refs.nome.value);
+        setTimeout(() => {            
             this.setState({ 
                 pgSalvar: 'Salvar',
                 btnSalvarEnable: false,
                 model: new UserModel(this.refs.nome.value, this.refs.phone.value, this.refs.email.value) 
             });            
-            this.onSalvar(this.state.model);
+            this.state.handleSalvar(this.state.model);
+            this.setState({ model: new UserModel('', '', '') });
+            this.refs.nome.value = '';
+            this.refs.phone.value = '';
+            this.refs.email.value = '';
         }, 1000);
     }
 

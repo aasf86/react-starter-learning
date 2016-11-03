@@ -4,6 +4,7 @@ class UserModel {
         this.nome = nome;
         this.telefone = telefone;
         this.email = email;
+        this.guid = Math.random().toString().split('.')[1]
     }
 }
 
