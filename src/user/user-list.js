@@ -4,28 +4,20 @@ import UserListItem from './user-list-item';
 
 class UserList extends Component {
 
-    constructor(props){
-        super(props);
-        this.state = {
-            users: props.users || [new UserModel('Anderson', '654a654asdf', '654as654dfas'), new UserModel('asdf','asdf','asdfasdfas')]         
-        };
+    constructor(props) {
+        super(props);        
     }
+ 
 
-    handleRemove(guid){
+    render() {
 
-        this.state.users = this.state.users.filter((item,index)=>{
-            return item.guid !== guid;
-        });
 
-        this.setState({ users: this.state.users });
-                
-    }
+        const {users} = this.props;
 
-    render(){        
-        return(
+        return (
             <div className="container">
                 <div className="well">
-                    <div className="row">            
+                    <div className="row">
                         <div className="table-responsive">
                             <table className="table table-hover table-condensed">
                                 <thead>
@@ -37,8 +29,8 @@ class UserList extends Component {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    { this.state.users.map((item, index) => <UserListItem user={item} key={index} onRemove={(guid)=>this.handleRemove(guid)} />) }
-                                </tbody>                                                            
+                                    {users.map((item, index) => <UserListItem user={item} key={item.guid} onRemove={(guid) => this.props.onRemove(guid)} />)}
+                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -49,5 +41,4 @@ class UserList extends Component {
 
 }
 
-export default UserList;    
-    
+export default UserList;

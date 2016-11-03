@@ -1,92 +1,88 @@
 import React, { Component } from 'react';
 import UserModel from './user-model';
 
-class User extends Component {    
-    
-    constructor(props){
+class User extends Component {
+
+    constructor(props) {
         super(props);
-        this.state = {
-            pgSalvar: 'Salvar',
-            btnSalvarEnable: props.btnSalvarEnable || false,
-            model: props.model || new UserModel('', '', ''),
-            handleSalvar: props.onSalvar
-        };
+
+        var model = props.model || new UserModel('asdasd', '123123123', 'asd123');
+
+        this.state = Object.assign({}, model, {
+            loading: false
+        });
     }
 
-    salvar(){
-        this.setState({ pgSalvar: 'Salvando...',  btnSalvarEnable: true });
-        setTimeout(() => {            
-            this.setState({ 
-                pgSalvar: 'Salvar',
-                btnSalvarEnable: false,
-                model: new UserModel(this.refs.nome.value, this.refs.phone.value, this.refs.email.value) 
-            });            
-            this.state.handleSalvar(this.state.model);
-            this.setState({ model: new UserModel('', '', '') });
-            this.refs.nome.value = '';
-            this.refs.phone.value = '';
-            this.refs.email.value = '';
+    salvar() {
+        this.setState({ loading: true });
+
+        setTimeout(() => {
+            var modelLimpo = new UserModel('', '', '');
+            var novoState = Object.assign({}, modelLimpo, { loading: false });
+
+
+            this.props.onSalvar(new UserModel(this.state.nome, this.state.telefone, this.state.email));
+
+            this.setState(novoState);
         }, 1000);
     }
 
-    render(){
+    link(propName) {
+
+        return {
+            name: propName,
+            className: "form-control",
+            type: "text",
+            placeholder: `Insira seu ${propName}`,
+            value: this.state[propName],
+            onChange: (e) => this.setState({ [propName]: e.target.value })
+        };
+
+
+    }
+
+    renderInput(name, maxLength, Tag = "input"){
+        return <Tag {...this.link(name) } maxLength={maxLength} />
+    }
+
+    render() {
         const {
-            btnSalvarEnable, 
-            pgSalvar,
-            model
+            loading,
+            nome,
+            telefone,
+            email
         } = this.state;
 
-        return(
+        return (
             <div className="container">
                 <form className="">
                     <div className="well">
                         <div className="row">
                             <div className="form-group col-md-3">
                                 <label className="control-label">Nome</label>
-                                <input 
-                                    ref="nome"
-                                    maxLength="100"
-                                    type="text"
-                                    className="form-control"
-                                    placeholder="Insira seu nome"
-                                    name="name"
-                                    defaultValue={model.nome} />
+                                {this.renderInput("nome", 100, "textarea")}
                             </div>
                             <div className="form-group col-md-3">
                                 <label className="control-label">Telefone</label>
-                                <input
-                                    ref="phone"
-                                    maxLength="15"
-                                    type="text"
-                                    className="form-control"
-                                    placeholder="Insira seu telefone"
-                                    name="phone"
-                                    defaultValue={model.telefone} />
+                                {this.renderInput("telefone", 15)}
                             </div>
                             <div className="form-group col-md-3">
                                 <label className="control-label">Email</label>
-                                <input 
-                                    ref="email"
-                                    maxLength="100"
-                                    type="text"
-                                    className="form-control"
-                                    placeholder="Insira seu email"
-                                    name="email" 
-                                    defaultValue={model.email}/>
-                            </div>                        
-                            <div className="form-group col-md-2"> 
-                                <label className="control-label">&nbsp;</label>                               
+                                {this.renderInput("email", 100)}
+                            </div>
+                            <div className="form-group col-md-2">
+                                <label className="control-label">&nbsp;</label>
                                 <button
                                     ref="btnSalvar"
                                     type="button"
-                                    disabled={btnSalvarEnable}
-                                    onClick={()=>this.salvar()}
+                                    disabled={loading}
+                                    onClick={() => this.salvar()}
                                     className="btn btn-primary form-control">
-                                    <i className="glyphicon glyphicon-floppy-disk"></i>  {pgSalvar}
+                                    <i className="glyphicon glyphicon-floppy-disk"></i>  {loading ? "Salvando..." : "Salvar"}
                                 </button>
                             </div>
                         </div>
-                    </div>                
+                    </div>
                 </form>
             </div>
         );

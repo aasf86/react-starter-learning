@@ -6,17 +6,25 @@ import UserList from './user/user-list';
 
 class App extends Component {
 
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       users: []
     }
   }
 
-  addUser(user){        
-    this.state.users.push(user);    
+  addUser(user) {
+
     this.setState({
-      users: this.state.users
+      users: this.state.users.concat(user)
+    });
+
+  }
+
+
+  removeItem(guid) {
+    this.setState({
+      users: this.state.users.filter((item, index) => { return item.guid !== guid; })
     });
   }
 
@@ -25,19 +33,19 @@ class App extends Component {
     const { users } = this.state;
 
     return (
-      <div>        
+      <div>
         <div className="App">
           <div className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
             <h2>Welcome to React</h2>
           </div>
           <p className="App-intro">
-            To get started, edit <code>src/App.js</code> and save to reload.          
+            To get started, edit <code>src/App.js</code> and save to reload.
           </p>
         </div>
-        <hr/>
-        <User onSalvar={(user)=>this.addUser(user)} />
-        <UserList users={users} />
+        <hr />
+        <User onSalvar={(user) => this.addUser(user)} />
+        <UserList users={users} onRemove={(guid) => this.removeItem(guid)} />
       </div>
     );
   }
